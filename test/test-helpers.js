@@ -148,7 +148,7 @@ function makeExpectedThing(users, thing, reviews=[]) {
     image: thing.image,
     title: thing.title,
     content: thing.content,
-    date_created: thing.date_created,
+    date_created: new Date(thing.date_created),
     number_of_reviews,
     average_review_rating,
     user: {
@@ -156,7 +156,7 @@ function makeExpectedThing(users, thing, reviews=[]) {
       user_name: user.user_name,
       full_name: user.full_name,
       nickname: user.nickname,
-      date_created: user.date_created,
+      date_created: new Date(user.date_created),
     },
   }
 }
@@ -187,7 +187,7 @@ function makeExpectedThingReviews(users, thingId, reviews) {
         user_name: reviewUser.user_name,
         full_name: reviewUser.full_name,
         nickname: reviewUser.nickname,
-        date_created: reviewUser.date_created,
+        date_created: new Date(reviewUser.date_created),
       }
     }
   })
@@ -255,6 +255,11 @@ function seedMaliciousThing(db, user, thing) {
     )
 }
 
+function makeAuthHeader(user) {
+  const token = Buffer.from(`${user.user_name}:${user.password}`).toString('base64')
+  return `Basic ${token}`
+}
+
 module.exports = {
   makeUsersArray,
   makeThingsArray,
@@ -267,4 +272,5 @@ module.exports = {
   cleanTables,
   seedThingsTables,
   seedMaliciousThing,
+  makeAuthHeader,
 }
