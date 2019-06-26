@@ -50,7 +50,7 @@ const ReviewsService = {
       rating: review.rating,
       text: xss(review.text),
       thing_id: review.thing_id,
-      date_created: review.date_created,
+      date_created: new Date(review.date_created),
       user: review.user || {},
     }
   }

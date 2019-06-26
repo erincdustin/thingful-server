@@ -73,7 +73,7 @@ const ThingsService = {
       id: thingData.id,
       title: xss(thingData.title),
       content: xss(thingData.content),
-      date_created: thingData.date_created,
+      date_created: new Date(thingData.date_created),
       image: thingData.image,
       user: thingData.user || {},
       number_of_reviews: Number(thingData.number_of_reviews) || 0,
@@ -99,7 +99,7 @@ const ThingsService = {
       thing_id: reviewData.thing_id,
       text: xss(reviewData.text),
       user: reviewData.user || {},
-      date_created: reviewData.date_created,
+      date_created: new Date(reviewData.date_created),
     }
   },
 }
