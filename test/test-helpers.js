@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 function makeUsersArray() {
   return [
@@ -8,7 +9,7 @@ function makeUsersArray() {
       full_name: 'Test user 1',
       nickname: 'TU1',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 2,
@@ -16,7 +17,7 @@ function makeUsersArray() {
       full_name: 'Test user 2',
       nickname: 'TU2',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 3,
@@ -24,7 +25,7 @@ function makeUsersArray() {
       full_name: 'Test user 3',
       nickname: 'TU3',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 4,
@@ -32,7 +33,7 @@ function makeUsersArray() {
       full_name: 'Test user 4',
       nickname: 'TU4',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
   ]
 }
@@ -44,7 +45,7 @@ function makeThingsArray(users) {
       title: 'First test thing!',
       image: 'http://placehold.it/500x500',
       user_id: users[0].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
       content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
     },
     {
@@ -52,7 +53,7 @@ function makeThingsArray(users) {
       title: 'Second test thing!',
       image: 'http://placehold.it/500x500',
       user_id: users[1].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
       content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
     },
     {
@@ -60,7 +61,7 @@ function makeThingsArray(users) {
       title: 'Third test thing!',
       image: 'http://placehold.it/500x500',
       user_id: users[2].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
       content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
     },
     {
@@ -68,7 +69,7 @@ function makeThingsArray(users) {
       title: 'Fourth test thing!',
       image: 'http://placehold.it/500x500',
       user_id: users[3].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
       content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
     },
   ]
@@ -82,7 +83,7 @@ function makeReviewsArray(users, things) {
       text: 'First test review!',
       thing_id: things[0].id,
       user_id: users[0].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 2,
@@ -90,7 +91,7 @@ function makeReviewsArray(users, things) {
       text: 'Second test review!',
       thing_id: things[0].id,
       user_id: users[1].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 3,
@@ -98,7 +99,7 @@ function makeReviewsArray(users, things) {
       text: 'Third test review!',
       thing_id: things[0].id,
       user_id: users[2].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 4,
@@ -106,7 +107,7 @@ function makeReviewsArray(users, things) {
       text: 'Fourth test review!',
       thing_id: things[0].id,
       user_id: users[3].id,
-      date_created: '2029-01-22T16:28:32.615Z', 
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 5,
@@ -114,7 +115,7 @@ function makeReviewsArray(users, things) {
       text: 'Fifth test review!',
       thing_id: things[things.length - 1].id,
       user_id: users[0].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 6,
@@ -122,7 +123,7 @@ function makeReviewsArray(users, things) {
       text: 'Sixth test review!',
       thing_id: things[things.length - 1].id,
       user_id: users[2].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
     {
       id: 7,
@@ -130,7 +131,7 @@ function makeReviewsArray(users, things) {
       text: 'Seventh test review!',
       thing_id: things[3].id,
       user_id: users[0].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T21:28:32.615Z',
     },
   ];
 }
@@ -291,9 +292,12 @@ function seedMaliciousThing(db, user, thing) {
 //     )
 // }
 
-function makeAuthHeader(user) {
-  const token = Buffer.from(`${user.user_name}:${user.password}`).toString('base64')
-  return `Basic ${token}`
+function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
+  const token = jwt.sign({ user_id: user.id }, secret, {
+    subject: user.user_name,
+    algorithm: 'HS256'
+  })
+  return `Bearer ${token}`
 }
 
 module.exports = {
